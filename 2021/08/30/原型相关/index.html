@@ -20,28 +20,32 @@
     var CONFIG = {"hostname":"zihongtang.github.io","root":"/myblog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="TZH-Blog">
-<meta property="og:url" content="https://zihongtang.github.io/myblog/index.html">
+  <meta name="description" content="原型（new）proto 隐式原型foo.proto 可以找到实例中的函数Foo.prototype &#x3D;&#x3D;&#x3D; foo.proto每个对象都有一个隐式原型，都会指向显式原型 new 实例对象:通过实例的方式构造出来的对象。var foo &#x3D; new Foo()原型：构造函数通过new 的方式执行会改变this指向，并赋值给一个变量，就成了实例对象，这时候Foo就是foo实例的原型。构造函数的prot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型相关">
+<meta property="og:url" content="https://zihongtang.github.io/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="TZH-Blog">
+<meta property="og:description" content="原型（new）proto 隐式原型foo.proto 可以找到实例中的函数Foo.prototype &#x3D;&#x3D;&#x3D; foo.proto每个对象都有一个隐式原型，都会指向显式原型 new 实例对象:通过实例的方式构造出来的对象。var foo &#x3D; new Foo()原型：构造函数通过new 的方式执行会改变this指向，并赋值给一个变量，就成了实例对象，这时候Foo就是foo实例的原型。构造函数的prot">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-30T01:34:50.000Z">
+<meta property="article:modified_time" content="2021-08-30T01:38:40.526Z">
 <meta property="article:author" content="唐兹鸿">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zihongtang.github.io/myblog/">
+<link rel="canonical" href="https://zihongtang.github.io/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>TZH-Blog</title>
+  <title>原型相关 | TZH-Blog</title>
   
 
 
@@ -139,9 +143,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -157,10 +162,9 @@
       <meta itemprop="name" content="TZH-Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">原型相关</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          原型相关
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -193,7 +197,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="原型（new）"><a href="#原型（new）" class="headerlink" title="原型（new）"></a>原型（new）</h4><p><strong>proto</strong> 隐式原型<br>foo.<strong>proto</strong> 可以找到实例中的函数<br>Foo.prototype === foo.<strong>proto</strong><br>每个对象都有一个隐式原型，都会指向显式原型</p>
+        <h4 id="原型（new）"><a href="#原型（new）" class="headerlink" title="原型（new）"></a>原型（new）</h4><p><strong>proto</strong> 隐式原型<br>foo.<strong>proto</strong> 可以找到实例中的函数<br>Foo.prototype === foo.<strong>proto</strong><br>每个对象都有一个隐式原型，都会指向显式原型</p>
 <p>new 实例对象:通过实例的方式构造出来的对象。<br>var foo = new Foo()<br>原型：构造函数通过new 的方式执行会改变this指向，并赋值给一个变量，就成了实例对象，这时候Foo就是foo实例的原型。<br>构造函数的prototype指向原型对象，原型对象有一个constructor属性指向构造函数，每个构造函数生成的实例对象都有一个proto属性，这个属性指向原型对象<br>Foo.prototype 原型本身<br>foo.<strong>proto</strong> 实例对象获取原型<br>Object.getPrototypeOf(foo) === Foo.prototype</p>
 <p>原型链<br>当我们访问对象的属性方法时，会从自身的原型对象去找，如果找不到就往原型的原型去找属性方法，这样就形成了原型链<br>使用：用过实例对象.hasOwnProperty(’属性’) == true则本原型中有此属性，false则没有</p>
 <p>foo.<strong>proto</strong> == new Foo( ) -&gt; Foo.prototype -&gt; Object.prototype<br>本实例对象 == new 原型实例对象-&gt;父类实例对象-&gt;Object</p>
@@ -210,183 +214,30 @@
 <p>组合继承—经典继承：<br>function Sub(){Super.call(this)}<br>解决兼容性：<br>if(!Object.creat){<br>    Object.creat=function(proto){<br>        function F(){}<br>        F.prototype = proto<br>        return new F()<br>    }<br>}<br>sub.prototype = Object.creat(Super.prototype)</p>
 <p>继承：侧重是从父一级构造函数，继承到的属性和方法<br>多态：侧重是子一级自己重写和新增的属性和方法<br>先继承父一级构造函数在进行子一级多态修改函数</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2017/07/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-      <meta itemprop="name" content="唐兹鸿">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TZH-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog/2017/07/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">我的第一篇博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-07-26 20:01:25" itemprop="dateCreated datePublished" datetime="2017-07-26T20:01:25+08:00">2017-07-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-30 15:37:51" itemprop="dateModified" datetime="2021-07-30T15:37:51+08:00">2021-07-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>第一页<br>发现hexo是什么</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/myblog/2017/07/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2017/07/26/LearnMarkdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-      <meta itemprop="name" content="唐兹鸿">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TZH-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog/2017/07/26/LearnMarkdown/" class="post-title-link" itemprop="url">Learn Markdown</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-07-26 20:01:25" itemprop="dateCreated datePublished" datetime="2017-07-26T20:01:25+08:00">2017-07-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-30 17:01:22" itemprop="dateModified" datetime="2021-07-30T17:01:22+08:00">2021-07-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/myblog/2017/07/26/LearnMarkdown/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/myblog/2017/07/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" rel="prev" title="我的第一篇博客">
+      <i class="fa fa-chevron-left"></i> 我的第一篇博客
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -439,6 +290,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%EF%BC%88new%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">原型（new）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
