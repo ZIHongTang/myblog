@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zihongtang.github.io","root":"/myblog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zihongtang.github.io","root":"/myblog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
@@ -145,10 +145,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/">
+    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2021/08/30/vue%E7%9B%B8%E5%85%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
+      <meta itemprop="image" content="/myblog/images/head.jpg">
       <meta itemprop="name" content="唐兹鸿">
       <meta itemprop="description" content="">
     </span>
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">原型相关</a>
+            <a href="/myblog/2021/08/30/vue%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">vue相关</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-08-30 09:34:50 / 修改时间：09:38:40" itemprop="dateCreated datePublished" datetime="2021-08-30T09:34:50+08:00">2021-08-30</time>
+              <time title="创建时间：2021-08-30 16:09:15 / 修改时间：16:09:53" itemprop="dateCreated datePublished" datetime="2021-08-30T16:09:15+08:00">2021-08-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -193,23 +193,265 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="原型（new）"><a href="#原型（new）" class="headerlink" title="原型（new）"></a>原型（new）</h4><p><strong>proto</strong> 隐式原型<br>foo.<strong>proto</strong> 可以找到实例中的函数<br>Foo.prototype === foo.<strong>proto</strong><br>每个对象都有一个隐式原型，都会指向显式原型</p>
-<p>new 实例对象:通过实例的方式构造出来的对象。<br>var foo = new Foo()<br>原型：构造函数通过new 的方式执行会改变this指向，并赋值给一个变量，就成了实例对象，这时候Foo就是foo实例的原型。<br>构造函数的prototype指向原型对象，原型对象有一个constructor属性指向构造函数，每个构造函数生成的实例对象都有一个proto属性，这个属性指向原型对象<br>Foo.prototype 原型本身<br>foo.<strong>proto</strong> 实例对象获取原型<br>Object.getPrototypeOf(foo) === Foo.prototype</p>
-<p>原型链<br>当我们访问对象的属性方法时，会从自身的原型对象去找，如果找不到就往原型的原型去找属性方法，这样就形成了原型链<br>使用：用过实例对象.hasOwnProperty(’属性’) == true则本原型中有此属性，false则没有</p>
-<p>foo.<strong>proto</strong> == new Foo( ) -&gt; Foo.prototype -&gt; Object.prototype<br>本实例对象 == new 原型实例对象-&gt;父类实例对象-&gt;Object</p>
-<p>instanceof 查找这个原型对象的是否在原型链内</p>
-<p>函数优先级中括号( )&gt; . &gt;new<br>1.this指向当前方法的默认obj对象<br>2.用prototype原型来给构造函数添加this.函数名<br>Person.prototype.show = function(){}</p>
-<p>继承的全局this不能被事件（onclick）使用<br>function  abc (){<br>    Var _this = this;<br>    this.oBtn[0].onclick = function(){<br>        _this.tab(this)<br>    }<br>}<br>abc.prototype.tab = function(thisBtn){<br>    this.oBtn[0].style.display = “none”;<br>    thisBtn.style.display=“block”;<br>}</p>
-<p>ECMA6 class语法<br>class Person{<br>    constructor(name, sex, age){<br>        this.name = name;<br>        this.sex = sex;<br>        this.age = age;<br>    }<br>    showSelf(){<br>        alert(<code>$&#123;this.name&#125;,$&#123;this.sex&#125;,$&#123;this.age&#125;</code>)<br>    }<br>    static info = ‘eee’//静态属性</p>
-<p>}<br>var p1 = new Person(“blue”，”男”，18)；<br>p1.showSelf()</p>
-<p>静态属性<br> 1、不能被实例继承————-p1.info //报错<br>2、只能直接通过类调用——–Person.info<br>3、可以被子类继承————-Worker.info<br>4、可以从super对象上调用—-super.info</p>
-<p>extends 继承<br>class Worker extends Person{<br>    constructor(name,sex,age,job){<br>        super(name,sex,age); //继承后必须优先调用super函数，引用父类的构造器内容<br>        this.job = job;<br>    }<br>    showJob(){<br>        alert(“我的工作是”+this.job)<br>    }<br>}<br>var w1 = new Worker(“小米”,男，20，程序员)<br>w1.showSelf();<br>w1.showJob();</p>
-<p>constructor<br>foo.constructor === Foo.protytype.constructor<br>当Foo原型有变化，等式不成立。需要在变化的原型上加constructor：Foo</p>
-<p>原型链继承，引用值共享的问题<br>可以通过一个实例对象访问到原型链上的所有方法<br>Sub.prototype = new Super()<br>原型继承另一个实例对象</p>
-<p>构造函数继承（获取其他函数的方法），没办法拿到原型上的方法。<br>用父级.call(this,{对象})继承父级方法</p>
-<p>组合继承—经典继承：<br>function Sub(){Super.call(this)}<br>解决兼容性：<br>if(!Object.creat){<br>    Object.creat=function(proto){<br>        function F(){}<br>        F.prototype = proto<br>        return new F()<br>    }<br>}<br>sub.prototype = Object.creat(Super.prototype)</p>
-<p>继承：侧重是从父一级构造函数，继承到的属性和方法<br>多态：侧重是子一级自己重写和新增的属性和方法<br>先继承父一级构造函数在进行子一级多态修改函数</p>
+          <h4 id="vue指令"><a href="#vue指令" class="headerlink" title="vue指令"></a>vue指令</h4><ul>
+<li>v-if=’true’…v-else</li>
+<li>v-show //性能高，与if不同的是if的dom会消除</li>
+<li>v-for //遍历</li>
+<li>v-on:click -&gt; @click=’add($event)’ //点击事件</li>
+<li>v-once //不能改变数据</li>
+<li>v-html //展示dom</li>
+<li>v-pre //禁止双括号解析</li>
+<li>v-cloak //vue启动后会去掉此标签</li>
+<li>v-bind:class = ‘{‘a’:isActive}’ //动态绑定属性对象语法</li>
+<li>v-model=’msg’ //双向绑定，可绑定radio、checkbox、select标签</li>
+<li>修饰符v-model.lazy //键盘回车或者失焦触发绑定</li>
+<li>v-model.number //强制转换成number类型</li>
+<li>v-model.trim //去除空格v-on修饰符用于事件@click.stop=’btnclick’</li>
+<li>事件冒泡@click.prevent=’btnclick’ //阻止默认事件</li>
+<li>@keyup.enter=’keyup’ //监听键盘事件</li>
+<li>标签内绑定:key作用</li>
+</ul>
+<p>1.标签内用key禁止vue虚拟dom复用<br>2.v-for中绑定:key=item(唯一)<br>3.快速插入dom(Vue的Diff算法)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2021/08/30/vue%E7%9B%B8%E5%85%B3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2021/08/30/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/head.jpg">
+      <meta itemprop="name" content="唐兹鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TZH-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2021/08/30/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">基础知识整理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-30 10:55:17 / 修改时间：11:39:19" itemprop="dateCreated datePublished" datetime="2021-08-30T10:55:17+08:00">2021-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">前端知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h4><p>var num = 52;<br>十进制转二进制<br>52/2=26/2=13/2=6/2=3/2=1<br>    0      0        1      0     1<br>二进制转十进制<br>1*2^2+1*2^4+1*2^5 = 4+16+32<br>二进制转八进制<br>规则：从右往左数（110100），再将二进制数转成对应的八进制或者十六进制</p>
+<h4 id="向上取整"><a href="#向上取整" class="headerlink" title="向上取整"></a>向上取整</h4><p>Math.ceil(3.1)＝4<br>Math.pow(x,y); //求x的y次方</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2021/08/30/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/head.jpg">
+      <meta itemprop="name" content="唐兹鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TZH-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">原型相关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-30 09:34:50 / 修改时间：10:56:31" itemprop="dateCreated datePublished" datetime="2021-08-30T09:34:50+08:00">2021-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">前端知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="原型（new）"><a href="#原型（new）" class="headerlink" title="原型（new）"></a>原型（new）</h4><p>__proto__隐式原型<br>foo.__proto__可以找到实例中的函数<br>Foo.prototype === foo.__proto__<br>每个对象都有一个隐式原型，都会指向显式原型</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2021/08/30/%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2017/07/26/LearnMarkdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/head.jpg">
+      <meta itemprop="name" content="唐兹鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TZH-Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2017/07/26/LearnMarkdown/" class="post-title-link" itemprop="url">Learn Markdown</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-26 20:01:25" itemprop="dateCreated datePublished" datetime="2017-07-26T20:01:25+08:00">2017-07-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-04 08:39:24" itemprop="dateModified" datetime="2021-08-04T08:39:24+08:00">2021-08-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/myblog/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2017/07/26/LearnMarkdown/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -231,7 +473,7 @@
     <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2017/07/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
+      <meta itemprop="image" content="/myblog/images/head.jpg">
       <meta itemprop="name" content="唐兹鸿">
       <meta itemprop="description" content="">
     </span>
@@ -286,87 +528,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/myblog/2017/07/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2017/07/26/LearnMarkdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/avatar.gif">
-      <meta itemprop="name" content="唐兹鸿">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TZH-Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog/2017/07/26/LearnMarkdown/" class="post-title-link" itemprop="url">Learn Markdown</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-07-26 20:01:25" itemprop="dateCreated datePublished" datetime="2017-07-26T20:01:25+08:00">2017-07-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-30 17:01:22" itemprop="dateModified" datetime="2021-07-30T17:01:22+08:00">2021-07-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/myblog/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/myblog/2017/07/26/LearnMarkdown/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -445,7 +606,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="唐兹鸿"
-      src="/myblog/images/avatar.gif">
+      src="/myblog/images/head.jpg">
   <p class="site-author-name" itemprop="name">唐兹鸿</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -453,7 +614,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/myblog/archives">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

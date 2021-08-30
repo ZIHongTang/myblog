@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/myblog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/myblog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/myblog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/myblog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/myblog/css/main.css">
+
+
+<link rel="stylesheet" href="/myblog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zihongtang.github.io","root":"/myblog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="vue指令 v-if&#x3D;’true’…v-else v-show &#x2F;&#x2F;性能高，与if不同的是if的dom会消除 v-for &#x2F;&#x2F;遍历 v-on:click -&gt; @click&#x3D;’add($event)’ &#x2F;&#x2F;点击事件 v-once &#x2F;&#x2F;不能改变数据 v-html &#x2F;&#x2F;展示dom v-pre &#x2F;&#x2F;禁止双括号解析 v-cloak &#x2F;&#x2F;vue启动后会去掉此标签 v-bind:class &#x3D; ‘{‘a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue相关">
+<meta property="og:url" content="https://zihongtang.github.io/myblog/2021/08/30/vue%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="TZH-Blog">
+<meta property="og:description" content="vue指令 v-if&#x3D;’true’…v-else v-show &#x2F;&#x2F;性能高，与if不同的是if的dom会消除 v-for &#x2F;&#x2F;遍历 v-on:click -&gt; @click&#x3D;’add($event)’ &#x2F;&#x2F;点击事件 v-once &#x2F;&#x2F;不能改变数据 v-html &#x2F;&#x2F;展示dom v-pre &#x2F;&#x2F;禁止双括号解析 v-cloak &#x2F;&#x2F;vue启动后会去掉此标签 v-bind:class &#x3D; ‘{‘a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="evernotecid://5B7864A6-9DA3-47E7-B63A-B40237D9DE06/appyinxiangcom/32513876/ENResource/p15">
+<meta property="article:published_time" content="2021-08-30T08:09:15.000Z">
+<meta property="article:modified_time" content="2021-08-30T08:09:53.489Z">
+<meta property="article:author" content="唐兹鸿">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="evernotecid://5B7864A6-9DA3-47E7-B63A-B40237D9DE06/appyinxiangcom/32513876/ENResource/p15">
+
+<link rel="canonical" href="https://zihongtang.github.io/myblog/2021/08/30/vue%E7%9B%B8%E5%85%B3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>vue相关 | TZH-Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/myblog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">TZH-Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/myblog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/myblog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zihongtang.github.io/myblog/2021/08/30/vue%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/head.jpg">
+      <meta itemprop="name" content="唐兹鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TZH-Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue相关
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-30 16:09:15 / 修改时间：16:09:53" itemprop="dateCreated datePublished" datetime="2021-08-30T16:09:15+08:00">2021-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">前端知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="vue指令"><a href="#vue指令" class="headerlink" title="vue指令"></a>vue指令</h4><ul>
+<li>v-if=’true’…v-else</li>
+<li>v-show //性能高，与if不同的是if的dom会消除</li>
+<li>v-for //遍历</li>
+<li>v-on:click -&gt; @click=’add($event)’ //点击事件</li>
+<li>v-once //不能改变数据</li>
+<li>v-html //展示dom</li>
+<li>v-pre //禁止双括号解析</li>
+<li>v-cloak //vue启动后会去掉此标签</li>
+<li>v-bind:class = ‘{‘a’:isActive}’ //动态绑定属性对象语法</li>
+<li>v-model=’msg’ //双向绑定，可绑定radio、checkbox、select标签</li>
+<li>修饰符v-model.lazy //键盘回车或者失焦触发绑定</li>
+<li>v-model.number //强制转换成number类型</li>
+<li>v-model.trim //去除空格v-on修饰符用于事件@click.stop=’btnclick’</li>
+<li>事件冒泡@click.prevent=’btnclick’ //阻止默认事件</li>
+<li>@keyup.enter=’keyup’ //监听键盘事件</li>
+<li>标签内绑定:key作用</li>
+</ul>
+<p>1.标签内用key禁止vue虚拟dom复用<br>2.v-for中绑定:key=item(唯一)<br>3.快速插入dom(Vue的Diff算法)</p>
+<span id="more"></span>
+<h4 id="vue2基础模板"><a href="#vue2基础模板" class="headerlink" title="vue2基础模板"></a>vue2基础模板</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template id=&quot;cpn&quot;&gt;</span><br><span class="line">  &lt;div&gt;&lt;cpn :父组件命名变量=&quot;msg&quot;&gt;&lt;/cpn&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">//1. 创建组件构造对象</span><br><span class="line">const cpnC = Vue.extend(&#123;</span><br><span class="line">  template:&#x27;#cpn&#x27;,</span><br><span class="line">  components:&#123; //子组件cpn:cpnC&#125;</span><br><span class="line">&#125;)</span><br><span class="line">//2. 注册组件(全局组件)</span><br><span class="line">Vue.component(&#x27;my-cpn&#x27;,cpnC)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123; //父组件</span><br><span class="line">  el:&#x27;#id&#x27;,</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:&#x27;定义变量&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    //计算函数</span><br><span class="line">    set.get</span><br><span class="line">    //函数都调用get方法，成为一只只读属性，因此使用不需要加（）</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123; </span><br><span class="line">    add:function(event)&#123;//函数方法</span><br><span class="line">       this.msg</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components:&#123; //局部组件</span><br><span class="line">    cpn:cpnC</span><br><span class="line">    cpn:&#123;</span><br><span class="line">      template:&#x27;#cpn&#x27;,</span><br><span class="line">      components:&#123; //子组件</span><br><span class="line">        cpn:cpnC</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">    name()&#123; //如果是对象</span><br><span class="line">      handler(newValue,oldValue)&#123; //新值，旧值 &#125;,</span><br><span class="line">      deep:true //对象深度监听</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  filters:&#123;过滤器&#125;</span><br><span class="line"></span><br><span class="line">//计算函数computed 相对 方法函数methods 执行次数少，性能好组件化</span><br><span class="line"></span><br><span class="line">//子组件写法</span><br><span class="line">Vue.component(&#x27;my-cpn&#x27;,&#123;</span><br><span class="line">  template:&#x27;#cpn&#x27;,</span><br><span class="line">  //props:[&#x27;父组件变量&#x27;],</span><br><span class="line">  props:&#123;</span><br><span class="line">    msg:&#123;</span><br><span class="line">      type:Object,</span><br><span class="line">      default()&#123;return&#123;&#125;&#125;,//默认值</span><br><span class="line">      required:true //必传</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data()&#123;//函数的形式为了区分变量</span><br><span class="line">    return&#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    btnClick(item)&#123;</span><br><span class="line">      this.$emit(&#x27;item-click&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components:&#123;</span><br><span class="line">    //子组件</span><br><span class="line">    cpn:cpnC</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Vue.extend可在vue实例上继承一个新的函数方法，供全局调用</li>
+<li>vue自定义指令（v-focus）<br>v-focus={//可绑定一个对象存储，需要传的值}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Vue.directives:(&#x27;focus&#x27;,&#123;</span><br><span class="line">  bind(el,binding)&#123;</span><br><span class="line">    el //绑定指令的元素</span><br><span class="line">    binding //绑定元素的属性，包括传值,可写指令初始相关逻辑</span><br><span class="line">  &#125;,</span><br><span class="line">  inserted(el，binding，vnode)&#123;</span><br><span class="line">    //元素插入以后执行</span><br><span class="line">  &#125;,</span><br><span class="line">  update(el,binding)&#123;</span><br><span class="line">    binding //与上面一样，但属性内多出一个oldValue属性</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="父子组件通信"><a href="#父子组件通信" class="headerlink" title="父子组件通信"></a>父子组件通信</h4></li>
+<li>父-&gt;props(放子组件)-&gt;子</li>
+<li>子-&gt;$emit(‘item-click’,item)-&gt;父</li>
+<li>v-bind.sync //子组件批量修改父组件值父组件访问子组件  </li>
+<li>this.$chidren[0]  //父组件访问子组件（少用）</li>
+<li>获取自身dom内容<br>&lt;cpn ref=‘aaa’/&gt;<br>this.$refs.aaa.msg</li>
+<li>子组件访问父组件<br>this.$parent (不能复用)<br>this.$root</li>
+<li>访问根组件多层通信<br>provice //给下级准备数据<br>inject:[ ] //使用数据</li>
+</ul>
+<h4 id="组件扩张性（插槽）"><a href="#组件扩张性（插槽）" class="headerlink" title="组件扩张性（插槽）"></a>组件扩张性（插槽）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;cpn v-slot=“给子组件传值&quot;&gt;</span><br><span class="line">  &lt;span&gt;用于替换slot&lt;/span&gt;</span><br><span class="line">&lt;/cpn&gt;</span><br><span class="line">//子组件内加</span><br><span class="line">&lt;slot name＝aaa :new=&quot;new&quot;(传输数据给父组件)&gt;可加默认内容&lt;/slot&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a>作用域插槽</h4><p>slot-scope</p>
+<h4 id="双向绑定原理："><a href="#双向绑定原理：" class="headerlink" title="双向绑定原理："></a>双向绑定原理：</h4><p>Model view viewModel，数据响应式框架双向绑定利用input标签value值和input事件的$event.target.value实现双向绑定</p>
+<h4 id="数据双向绑定"><a href="#数据双向绑定" class="headerlink" title="数据双向绑定"></a>数据双向绑定</h4><p>创建Vue实例然后遍历data的属性，用obj.definePropoty转化为getter/setter</p>
+<h4 id="vuecli2创建项目"><a href="#vuecli2创建项目" class="headerlink" title="vuecli2创建项目"></a>vuecli2创建项目</h4><p>vue init webpack 项目名称</p>
+<ul>
+<li>build打包文件</li>
+<li>app //当前应用程序开发的所有代码（业务代码）</li>
+<li>manifest（为大包的代码做底层支撑）</li>
+<li>vendor（提供商，第三方vue/vue-route/axios/bs）</li>
+<li>懒加载：用到时再加载</li>
+<li>Gitkeep 有此文件，无论文件是否有用都会上传到git</li>
+<li>eslintignore 忽略代码检测</li>
+<li>gitignore git上传忽略</li>
+<li>postcsssrc.js css转化相关配置untime-compiler、runtime-only不同<br>runtime-compiler<br>template-&gt;ast(抽象语法树)-&gt;render-&gt;virtual dom-&gt;真实Dom<br>runtime-only(性能更高，下面的代码量更少)render-&gt;vdom-&gt;ui<h4 id="vuecli3"><a href="#vuecli3" class="headerlink" title="vuecli3"></a>vuecli3</h4>vue create 项目名称<br>vue ui //vue可视化项目配置或者可设置vue.config.js<h5 id="后端渲染"><a href="#后端渲染" class="headerlink" title="后端渲染"></a>后端渲染</h5>服务器直接生成渲染好对应的html页面，返回给客户端进行展示。当我们页面中需要请求不同路径内容时，交给服务器来进行处理，服务器渲染好整个页面，并且将页面返回给客户端。这样也有利于SEO优化。<br>缺点是</li>
+</ul>
+<ol>
+<li>后端人员要编写和维护页面模块。</li>
+<li>逻辑代码和页面代码混在一起。<h5 id="前后端分离（ajax）"><a href="#前后端分离（ajax）" class="headerlink" title="前后端分离（ajax）"></a>前后端分离（ajax）</h5>浏览器显示的网页中的大部分内容都是由前端写的js代码在浏览器中执行。<h5 id="前端路由-SPA-单页富应用"><a href="#前端路由-SPA-单页富应用" class="headerlink" title="前端路由(SPA:单页富应用)"></a>前端路由(SPA:单页富应用)</h5>整个网页只有一个html页面<br>用映射关系来链接前端跳转<br>location.hash<br>url变化不跳转<br>history.pushState({},’’,’home’) //可返回history.replaceState({},’’,’home’)<br>history.back()<br>history.go(-1)<h4 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h4>当router-link为button标签时（methods）<br>this.$router.push(‘/home’)<br>this.$router.replace(‘/home’)</li>
+</ol>
+<ul>
+<li>动态获取route参数（活跃路由的参数）<br>this.$route.params.userId //参数传递父组件<br>&lt;router-link :to=’{path:/home,query:name:’why’}’&gt;</li>
+<li>子组件通过<br>hash (link带#号)通过路由映射配置页面切换<br>history 通过history栈结构存储页面路由链接<h4 id="vue生命周期"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a>vue生命周期</h4></li>
+<li>beforeCreate() 当前阶段vue的所有属性都不能被调用</li>
+<li>created() 组件被创建出来时触发，当前可做初始数据的处理</li>
+<li>beforeMount() 虚拟dom已经创建完成，此时可对数据进行更改</li>
+<li>mounted() 挂载到dom时触发，可以用refs属性对dom进行操作</li>
+<li>beforeUpdate() 可更改数据，不会重复渲染</li>
+<li>updated() 页面发生更新时触发</li>
+<li>beforeDestroy() dom销毁前触发，可做定时器关闭</li>
+<li>destroy()<h4 id="导航守卫-监听路由跳转，做对应事件"><a href="#导航守卫-监听路由跳转，做对应事件" class="headerlink" title="导航守卫(监听路由跳转，做对应事件)"></a>导航守卫(监听路由跳转，做对应事件)</h4><a target="_blank" rel="noopener" href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html">https://router.vuejs.org/zh/guide/advanced/navigation-guards.html</a><br>对页面跳转时前中后期做处理事件，钩子(hook)可先在路由的meta:{}中配置元信息，用于页面跳转时传值全局守卫<br>router.beforeEach(to,from,next) next({name:’Login’})<br>router.afterEach<br>路由守卫（在路由对象中配置）<br>beforeEnter<br>组件守卫（查看文档）<br>beforeRouteEnter<h4 id="keep-alive-组件不销毁"><a href="#keep-alive-组件不销毁" class="headerlink" title="keep-alive 组件不销毁"></a>keep-alive 组件不销毁</h4>exclude=’’ 排除组件<br>activated() 活跃<br>deactivated() 不活跃<h4 id="vuex管理公共数据及状态"><a href="#vuex管理公共数据及状态" class="headerlink" title="vuex管理公共数据及状态"></a>vuex管理公共数据及状态<img src="evernotecid://5B7864A6-9DA3-47E7-B63A-B40237D9DE06/appyinxiangcom/32513876/ENResource/p15" alt="769f172bfc7a13fdd9876dfe444bb6ba.png"></h4>单一状态树</li>
+<li>$store.state 状态函数</li>
+<li>getters 计算对象</li>
+<li>mutation 状态更新（响应式，当state被修改后全局修改）<br>动态添加属性,用vue的方法添加属性实现响应式vue.set(state.info,’address’,’广州’)<br>delete state.info //做不到响应式，使用后删除的字段还存在内存中<br>vue.delete(state.info,’age’)</li>
+<li>actions 提交异步操作</li>
+<li>modules 对单一状态树分模块<h4 id="Mixins（混入，复用代码-）"><a href="#Mixins（混入，复用代码-）" class="headerlink" title="Mixins（混入，复用代码 ）"></a>Mixins（混入，复用代码 ）</h4>import {showMixin} from ‘../mixins/show’<br>mixins:[showMixin]<h4 id="Es6对象解构"><a href="#Es6对象解构" class="headerlink" title="Es6对象解构"></a>Es6对象解构</h4>const obj = {name:1,age:2,height:3}<br>const {name, age,height} = obj //name=1<br>//会从obj中取出同样命名的字段。</li>
+</ul>
+<p>数组解构const [name1,name2,name3] = arr</p>
+<h4 id="axios全局"><a href="#axios全局" class="headerlink" title="axios全局"></a>axios全局</h4><p>Axios.defaults.baseURL = ‘http://…’<br>Axios.defaults.timeout = 5<br>axios({<br>  url:’/link’,<br>  params:{}<br>}).then(res=&gt;{})</p>
+<ul>
+<li>局部实例<br>const instance = axios.create({<br>baseURL:’http://..‘,<br>Timeout:5000<br>})<br>instance({ url:’’}).then()<h4 id="es5属性描述符（getter-setter）"><a href="#es5属性描述符（getter-setter）" class="headerlink" title="es5属性描述符（getter/setter）"></a>es5属性描述符（getter/setter）</h4>描述一个属性是否可被删除、遍历。。。Object.getOwnpropertyDescriptor(window,a)</li>
+<li>configurable //为false不可delete</li>
+<li>numerable  //遍历，默认false</li>
+<li>writable //重写</li>
+</ul>
+<p>object.defineProperty(window,’a’,{//可改写属性描述符})<br>get、set必须成对使用，否则会发生静默失败（赋值不生效）//定义属性描述符<br>object.defineProperties(obj,{对象})<br>object.creat(Object.prototype,{})</p>
+<h4 id="template模板转化原理"><a href="#template模板转化原理" class="headerlink" title="template模板转化原理"></a>template模板转化原理</h4><p>template先转化成render函数vue模板编译vue-template-complier在vue实例this内找到data中的值，然后通过createElement（_c）等一系列页面标签转换得到</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/myblog/2021/08/30/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" rel="prev" title="基础知识整理">
+      <i class="fa fa-chevron-left"></i> 基础知识整理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">vue指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue2%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">vue2基础模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1"><span class="nav-number">3.</span> <span class="nav-text">父子组件通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%89%A9%E5%BC%A0%E6%80%A7%EF%BC%88%E6%8F%92%E6%A7%BD%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">组件扩张性（插槽）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD"><span class="nav-number">5.</span> <span class="nav-text">作用域插槽</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">双向绑定原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="nav-number">7.</span> <span class="nav-text">数据双向绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vuecli2%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">8.</span> <span class="nav-text">vuecli2创建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vuecli3"><span class="nav-number">9.</span> <span class="nav-text">vuecli3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93"><span class="nav-number">9.1.</span> <span class="nav-text">后端渲染</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%EF%BC%88ajax%EF%BC%89"><span class="nav-number">9.2.</span> <span class="nav-text">前后端分离（ajax）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1-SPA-%E5%8D%95%E9%A1%B5%E5%AF%8C%E5%BA%94%E7%94%A8"><span class="nav-number">9.3.</span> <span class="nav-text">前端路由(SPA:单页富应用)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-router"><span class="nav-number">10.</span> <span class="nav-text">vue-router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">11.</span> <span class="nav-text">vue生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB-%E7%9B%91%E5%90%AC%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%EF%BC%8C%E5%81%9A%E5%AF%B9%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">12.</span> <span class="nav-text">导航守卫(监听路由跳转，做对应事件)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keep-alive-%E7%BB%84%E4%BB%B6%E4%B8%8D%E9%94%80%E6%AF%81"><span class="nav-number">13.</span> <span class="nav-text">keep-alive 组件不销毁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vuex%E7%AE%A1%E7%90%86%E5%85%AC%E5%85%B1%E6%95%B0%E6%8D%AE%E5%8F%8A%E7%8A%B6%E6%80%81"><span class="nav-number">14.</span> <span class="nav-text">vuex管理公共数据及状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mixins%EF%BC%88%E6%B7%B7%E5%85%A5%EF%BC%8C%E5%A4%8D%E7%94%A8%E4%BB%A3%E7%A0%81-%EF%BC%89"><span class="nav-number">15.</span> <span class="nav-text">Mixins（混入，复用代码 ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Es6%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%84"><span class="nav-number">16.</span> <span class="nav-text">Es6对象解构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#axios%E5%85%A8%E5%B1%80"><span class="nav-number">17.</span> <span class="nav-text">axios全局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#es5%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6%EF%BC%88getter-setter%EF%BC%89"><span class="nav-number">18.</span> <span class="nav-text">es5属性描述符（getter&#x2F;setter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#template%E6%A8%A1%E6%9D%BF%E8%BD%AC%E5%8C%96%E5%8E%9F%E7%90%86"><span class="nav-number">19.</span> <span class="nav-text">template模板转化原理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="唐兹鸿"
+      src="/myblog/images/head.jpg">
+  <p class="site-author-name" itemprop="name">唐兹鸿</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/myblog/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/myblog/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">唐兹鸿</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div> -->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/myblog/lib/anime.min.js"></script>
+  <script src="/myblog/lib/velocity/velocity.min.js"></script>
+  <script src="/myblog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/myblog/js/utils.js"></script>
+
+<script src="/myblog/js/motion.js"></script>
+
+
+<script src="/myblog/js/schemes/pisces.js"></script>
+
+
+<script src="/myblog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
